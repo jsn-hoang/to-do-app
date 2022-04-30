@@ -105,8 +105,29 @@ class ToDoListState extends State<ToDoList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('To Do'),
-        centerTitle: true,
+        toolbarHeight: 220,
+        title: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(bottom: 30, left: 8),
+              child: const Text(
+                'to do...',
+                style: TextStyle(
+                  fontSize: 32
+                ),
+              ),
+            ),
+            const Spacer(),
+            Image.asset('assets/masthead.png',
+              fit: BoxFit.contain,
+              height: 260,
+            ),
+          ],
+        ),
+        //centerTitle: true,
       ),
       body: list.isEmpty ? emptyList() : _buildList(),
       floatingActionButton: FloatingActionButton(
@@ -189,6 +210,7 @@ class ToDoListState extends State<ToDoList> {
 
   void removeItem(ToDoItem item) {
     list.remove(item);
+    setState((){});
     saveData();
   }
 
