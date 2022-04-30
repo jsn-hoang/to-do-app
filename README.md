@@ -4,5 +4,5 @@ A Flutter to-do app with smooth animations and a dark UI theme that uses the sha
 
 ## At a Glance
 
-![](/assets/todo.png)
+<img src='assets/todo.png' width='50%' height='50%'>
 
