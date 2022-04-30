@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'To Do',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
@@ -81,22 +82,29 @@ class ToDoListState extends State<ToDoList> {
       ),
       onDismissed: (direction) => removeItem(item),
       direction: DismissDirection.startToEnd,
-      child: ListTile(
-        onTap: () => changeItemState(item),
-        title: Text(
-          item.string,
-          key: Key('item-$index'),
-          style: TextStyle(
-            color: item.done ? Colors.grey : Colors.white,
-            decoration: item.done ? TextDecoration.lineThrough : null
+      child: Theme(
+        data: ThemeData(
+          unselectedWidgetColor: Colors.grey,
+        ),
+        child: CheckboxListTile(
+          onChanged: (value) => changeItemState(item),
+          value: item.done,
+          activeColor: Colors.indigoAccent,
+          title: Text(
+            item.string,
+            key: Key('item-$index'),
+            style: TextStyle(
+              color: item.done ? Colors.grey : Colors.white,
+              decoration: item.done ? TextDecoration.lineThrough : null
+            ),
           ),
         ),
-        trailing: Icon(item.done
-          ? Icons.check_box
-          : Icons.check_box_outline_blank,
-          key: Key('completed-icon-$index'),
-          color: Colors.white,
-        ),
+        // trailing: Icon(item.done
+        //   ? Icons.check_box
+        //   : Icons.check_box_outline_blank,
+        //   key: Key('completed-icon-$index'),
+        //   color: Colors.white,
+        // ),
       ),
     );
   }
@@ -116,14 +124,14 @@ class ToDoListState extends State<ToDoList> {
               child: const Text(
                 'to do...',
                 style: TextStyle(
-                  fontSize: 32
+                  fontSize: 36
                 ),
               ),
             ),
             const Spacer(),
             Image.asset('assets/masthead.png',
               fit: BoxFit.contain,
-              height: 260,
+              height: 250,
             ),
           ],
         ),
