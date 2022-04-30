@@ -127,7 +127,7 @@ class ToDoListState extends State<ToDoList> {
             ),
           ],
         ),
-        //centerTitle: true,
+        // centerTitle: true,
       ),
       body: list.isEmpty ? emptyList() : _buildList(),
       floatingActionButton: FloatingActionButton(
